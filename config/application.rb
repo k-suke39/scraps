@@ -1,6 +1,8 @@
-require_relative "boot"
+# frozen_string_literal: true
 
-require "rails/all"
+require_relative 'boot'
+
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -20,15 +22,18 @@ module PracApp
     # config.eager_load_paths << Rails.root.join("extras")
     # generateファイルの設定
     config.generators do |g|
-      g.skip_routes     true           # routes.rbにルーティングを追加しない、falseで追加する(falseがデフォルト)
-      # g.assets          false          # assets以下のファイル(CSS, JavaScriptファイル)を作成しない 
-      
+      g.skip_routes     true
+      # g.assets          false
       # g.assetsは分けて記述することもできる
-      # g.stylesheets   false          # stylesheets以下にファイルを作成しない  
-      # g.javascripts   false          # javascripts以下にファイルを作成しない
-
-      # g.helper          false          # helper以下にファイルを作成しない 
-      g.test_framework  false          # test以下にファイル作成しない     
-    end 
+      # g.stylesheets   false
+      # g.javascripts   false
+      # g.helper          false
+      g.test_framework  false
+      g.test_framework :rspec,
+                       fixtures: false,
+                       view_specs: false,
+                       helper_specs: false,
+                       routing_specs: false
+    end
   end
 end
